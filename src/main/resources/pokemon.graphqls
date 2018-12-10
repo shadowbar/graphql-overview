@@ -1,0 +1,66 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    # Find all Pokemons
+    pokemons: [Pokemon]!
+    # Find Pokemon by name
+    pokemon(name: String!): Pokemon!
+    # Find Attack by name
+    attack(name: String!): Attack!
+}
+
+type Mutation {
+    newPokemon(name: String!, type: Type, age: Int, attacksInput: [AttackInput]): Pokemon!
+    newPokemonWithAttacks(input: PokemonInput): Pokemon!
+}
+
+input PokemonInput {
+    name: String!
+    type: Type
+    age: Int
+    attacksInput: [AttackInput]
+}
+
+input AttackInput {
+    name: String!
+    damage: Int
+}
+
+# A Pokemon
+type Pokemon {
+    name: String!
+    type: Type
+    age: Int
+    attacks: [Attack]
+}
+
+# An Attack
+type Attack {
+    name: String!
+    damage: Int
+    pokemon: Pokemon
+}
+
+enum Type {
+    NORMAL
+    FIRE
+    FIGHTING
+    WATER
+    FLYING
+    GRASS
+    POISON
+    ELECTRIC
+    GROUND
+    PSYCHIC
+    ROCK
+    ICE
+    BUG
+    DRAGON
+    GHOST
+    DARK
+    STEEL
+    FAIRY
+}
